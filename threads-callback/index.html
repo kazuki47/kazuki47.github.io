@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Threads認証</title>
+</head>
+<body>
+  <h1>Threads認証結果</h1>
+  <pre id="result">確認中...</pre>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const error = params.get("error");
+
+    const result = document.getElementById("result");
+
+    if (code) {
+      result.textContent =
+        "認証コード:\n\n" + code +
+        "\n\nこのコードをGASのTHREADS_AUTH_CODEに保存してください。";
+    } else if (error) {
+      result.textContent = "認証エラー: " + error;
+    } else {
+      result.textContent = "認証コードがありません。";
+    }
+  </script>
+</body>
+</html>
